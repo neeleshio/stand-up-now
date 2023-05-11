@@ -1,0 +1,28 @@
+import React from 'react';
+
+const Logo = () => (
+    <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M10.992 3.58989C13.3634 -0.00416875 18.6366 -0.00416422 21.0081 3.58989L30.6453 18.1955C33.2774 22.1847 30.4165 27.5 25.6372 27.5H6.3628C1.58352 27.5 -1.27741 22.1847 1.35474 18.1955L10.992 3.58989Z"
+            fill="url(#paint0_linear_273_703)"
+        />
+        <path
+            d="M7 23V19.4706H12.9211C14.4447 19.4706 15.6842 18.0853 15.6842 16.3824V14.1765H12.5263L17.2632 8L22 14.1765H18.8421V16.3824C18.8421 20.0353 16.1895 23 12.9211 23H7Z"
+            fill="#181818"
+        />
+        <defs>
+            <linearGradient
+                id="paint0_linear_273_703"
+                x1="16"
+                y1="-4"
+                x2="16.5"
+                y2="56.5"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E9FA74" />
+                <stop offset="1" stop-color="#8ED935" />
+            </linearGradient>
+        </defs>
+    </svg>
+);
+
+export default Logo;
