@@ -36,5 +36,17 @@ export const ARTICLES = [
         title: 'Sitting Disease: How a Sedentary Lifestyle Affects Heart Health',
         link: 'https://www.hopkinsmedicine.org/health/wellness-and-prevention/sitting-disease-how-a-sedentary-lifestyle-affects-heart-health',
         image: '/image1.webp'
+    },
+    {
+        id: 1,
+        title: 'How To Fix the Health Issues Associated With the Engineering Lifestyle',
+        link: 'https://www.ltvco.com/engineering/health-implications-engineer-lifestyle/',
+        image: '/image2.jpg'
+    },
+    {
+        id: 2,
+        title: 'Standing vs. Sitting: Is standing actually better than sitting?',
+        link: 'https://germaniainsurance.com/blogs/post/germania-insurance-blog/2021/04/08/standing-vs.-sitting-is-standing-actually-better-than-sitting',
+        image: '/image3.webp'
     }
 ];

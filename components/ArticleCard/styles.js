@@ -7,6 +7,7 @@ export const StyledArticleCard = styled.div`
     border-radius: 20px;
     width: 100%;
     margin: 0 10px;
+    height: 210px;
 
     .img-container {
         max-height: 200px;
@@ -19,8 +20,8 @@ export const StyledArticleCard = styled.div`
             max-height: 170px;
             object-fit: cover;
             border-radius: 5px;
-            -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-            filter: grayscale(100%);
+            -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+            filter: grayscale(70%);
         }
     }
 

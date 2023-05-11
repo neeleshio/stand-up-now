@@ -4,15 +4,45 @@ import Navbar from '@/components/Navbar';
 import Calender from '@/components/Svg/Calender';
 import RightArrow from '@/components/Svg/RightArrow';
 import StringVector from '@/components/Svg/StringVector';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledLSection } from './styles';
+import greetingTime from 'greeting-time';
+import Pause from '@/components/Svg/Pause';
+import Reset from '@/components/Svg/Reset';
+import Resume from '@/components/Svg/Resume';
 
 function LSection() {
     const date = new Date();
     const dateArray = date.toString().split(' ');
+    const [article, setArticle] = useState(0);
+    const totalArticles = ARTICLES.length;
+    const greeting = greetingTime(new Date());
+    const [pause, setPause] = useState(false);
+
+    const handleArtcileChange = (nav) => {
+        if (nav === 'prev') {
+            if (article === 0) {
+                setArticle(totalArticles - 1);
+            } else {
+                setArticle((prev) => prev - 1);
+            }
+        } else {
+            if (article === totalArticles - 1) {
+                setArticle(0);
+            } else {
+                setArticle((prev) => prev + 1);
+            }
+        }
+    };
+
+    const handlePause = () => {
+        setPause((prev) => !prev);
+    };
+
+    const handleReset = () => {};
 
     return (
-        <StyledLSection>
+        <StyledLSection pause={pause}>
             <Navbar />
             <div>
                 <div className="header-container">
@@ -30,28 +60,15 @@ function LSection() {
                             </div>
                         </div>
                         <div className="greetings">
-                            <span>Good Moring</span>
+                            <span>{greeting}</span>
                         </div>
                     </div>
                 </div>
 
                 <div className="graph-container">
-                    <div className="graph">
-                        <div className="graph-img">
-                            <StringVector />
-                        </div>
-                        <div className="graph-content">
-                            <div className="text-content">
-                                <span className="text-1">Next Alert in</span>
-                                <span className="text-3">
-                                    30 <span className="text-3-min">min</span>
-                                </span>
-                            </div>
-                            <div className="btn-content">
-                                <button>Pause</button>
-                                <button>Reset</button>
-                            </div>
-                        </div>
+                    <div className="graph1">
+                        <span className="activity">Activity Graph</span>
+                        <span className="no-data">No data available</span>
                     </div>
 
                     <div className="graph">
@@ -66,23 +83,36 @@ function LSection() {
                                 </span>
                             </div>
                             <div className="btn-content">
-                                <button>Pause</button>
-                                <button>Reset</button>
+                                <button onClick={handlePause}>
+                                    {pause ? (
+                                        <>
+                                            <Resume />
+                                            <span>Resume</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Pause />
+                                            <span>Pause</span>
+                                        </>
+                                    )}
+                                </button>
+                                <button onClick={handleReset}>
+                                    <Reset />
+                                    <span>Reset</span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="article-container">
-                    <div className="left-arrow">
+                    <button className="left-arrow" onClick={() => handleArtcileChange('prev')}>
                         <RightArrow />
-                    </div>
-                    {ARTICLES.map((el) => (
-                        <ArticleCard {...el} key={el.id} />
-                    ))}
-                    <div className="right-arrow">
+                    </button>
+                    <ArticleCard {...ARTICLES[article]} />
+                    <button className="right-arrow" onClick={() => handleArtcileChange('next')}>
                         <RightArrow />
-                    </div>
+                    </button>
                 </div>
             </div>
         </StyledLSection>

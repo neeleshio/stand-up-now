@@ -27,7 +27,8 @@ export const StyledLSection = styled.section`
             border: 1px solid #424242;
             padding: 20px 30px;
             border-radius: 24px;
-            margin: 10px;
+            margin: 0 10px;
+            height: 60px;
         }
 
         .date {
@@ -51,6 +52,34 @@ export const StyledLSection = styled.section`
         justify-content: space-between;
     }
 
+    .graph1 {
+        background: #d3a6ff;
+        width: 50%;
+        border-radius: 30px;
+        color: #000000;
+        position: relative;
+
+        .activity {
+            display: block;
+            padding: 20px 20px;
+            color: #1c1b1b;
+            font-size: 12px;
+        }
+
+        .no-data {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #424242;
+            padding: 15px 20px;
+            border-radius: 20px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 12px;
+        }
+    }
+
     .graph {
         background: #181818;
         padding: 0px 30px;
@@ -58,13 +87,14 @@ export const StyledLSection = styled.section`
         display: flex;
         align-items: center;
         height: 200px;
+        width: 47.5%;
 
         svg {
             width: 180px;
         }
 
         .graph-img {
-            animation: rotate-animation 40s infinite linear;
+            animation: ${(props) => !props.pause && 'rotate-animation 40s infinite linear'};
 
             @keyframes rotate-animation {
                 0% {
@@ -80,14 +110,26 @@ export const StyledLSection = styled.section`
         }
 
         .graph-content {
+            .btn-content {
+                display: flex;
+            }
+
             button {
                 border: 1px solid #424242;
                 padding: 15px 20px;
                 border-radius: 20px;
                 background: #000000;
+                display: flex;
+                align-items: center;
+
+                svg {
+                    width: 15px;
+                    margin-right: 10px;
+                }
 
                 &:first-child {
                     margin-right: 10px;
+                    width: 116px;
                 }
             }
         }
@@ -126,6 +168,8 @@ export const StyledLSection = styled.section`
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background: none;
+            cursor: pointer;
         }
 
         .left-arrow {
