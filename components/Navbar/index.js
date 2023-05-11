@@ -1,6 +1,6 @@
 import React from 'react';
 import Hamburger from '../Svg/Hamburger';
-import Logo from '../Svg/logo';
+import Logo from '../Svg/Logo';
 import { StyledNavbar } from './styles';
 
 function Navbar() {

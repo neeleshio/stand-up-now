@@ -18,7 +18,8 @@ function LSection() {
                 <div className="header-container">
                     <div className="hi-text">
                         <span>Hi, Ann</span>
-                        <span>Check your Activity 👋</span>
+                        <span>Check your</span>
+                        <span>Activity 👋</span>
                     </div>
                     <div className="date-container">
                         <div className="date-wrapper">

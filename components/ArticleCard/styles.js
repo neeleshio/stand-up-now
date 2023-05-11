@@ -9,9 +9,11 @@ export const StyledArticleCard = styled.div`
     margin: 0 10px;
 
     .img-container {
-        max-height: 133px;
+        max-height: 200px;
         border-radius: 5px;
-        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         img {
             max-height: 170px;
@@ -25,7 +27,7 @@ export const StyledArticleCard = styled.div`
     .title-and-btn {
         display: flex;
         flex-direction: column;
-        margin: 30px 0 30px 70px;
+        margin: 35px 0 35px 70px;
 
         .title {
             font-size: 25px;
