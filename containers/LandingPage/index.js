@@ -1,14 +1,20 @@
+import ControlCard from '@/components/SubControlCard';
+import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import React from 'react';
-import LSection from './LSection';
-import RSection from './RSection';
+import ControlCenter from '../ControlCenter';
 import { StyledLandingPage } from './styles';
+import SubController from '../SubController';
 
 function LandingPage() {
     return (
         <StyledLandingPage>
-            <LSection />
-            <RSection />
+            <Navbar />
+            <div className="section-container">
+                <Header />
+                <ControlCenter />
+                <SubController />
+            </div>
         </StyledLandingPage>
     );
 }

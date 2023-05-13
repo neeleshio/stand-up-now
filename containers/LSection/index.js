@@ -1,5 +1,5 @@
 import ArticleCard from '@/components/ArticleCard';
-import { ARTICLES } from '@/components/contants';
+import { ARTICLES, BUBBLE_CARD_CONTENTS } from '@/components/contants';
 import Navbar from '@/components/Navbar';
 import Calender from '@/components/Svg/Calender';
 import RightArrow from '@/components/Svg/RightArrow';
@@ -10,6 +10,8 @@ import greetingTime from 'greeting-time';
 import Pause from '@/components/Svg/Pause';
 import Reset from '@/components/Svg/Reset';
 import Resume from '@/components/Svg/Resume';
+import Scroll from '@/components/Scroll';
+import BubbleCard from '@/components/BubbleCard';
 
 function LSection() {
     const date = new Date();
@@ -43,13 +45,12 @@ function LSection() {
 
     return (
         <StyledLSection pause={pause}>
-            <Navbar />
+            {/* <Navbar /> */}
             <div>
-                <div className="header-container">
+                {/* <div className="header-container">
                     <div className="hi-text">
                         <span>Hi, Ann</span>
-                        <span>Check your</span>
-                        <span>Activity 👋</span>
+                        <span>Check your Activity 👋</span>
                     </div>
                     <div className="date-container">
                         <div className="date-wrapper">
@@ -63,9 +64,15 @@ function LSection() {
                             <span>{greeting}</span>
                         </div>
                     </div>
+                </div> */}
+
+                <div className="bubble-card-container">
+                    {BUBBLE_CARD_CONTENTS.map((el) => (
+                        <BubbleCard {...el} key={el.id} />
+                    ))}
                 </div>
 
-                <div className="graph-container">
+                {/* <div className="graph-container">
                     <div className="graph1">
                         <span className="activity">Activity Graph</span>
                         <span className="no-data">No data available</span>
@@ -113,7 +120,7 @@ function LSection() {
                     <button className="right-arrow" onClick={() => handleArtcileChange('next')}>
                         <RightArrow />
                     </button>
-                </div>
+                </div> */}
             </div>
         </StyledLSection>
     );

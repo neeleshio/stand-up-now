@@ -2,15 +2,13 @@ import styled from 'styled-components';
 
 export const StyledArticleCard = styled.div`
     display: flex;
-    padding: 0 50px;
-    border: 0.5px solid #fff;
+    justify-content: space-between;
     border-radius: 20px;
-    width: 100%;
-    margin: 0 10px;
-    height: 210px;
+    width: 57%;
+    height: 220px;
+    background: #181818;
 
     .img-container {
-        max-height: 200px;
         border-radius: 5px;
         display: flex;
         flex-direction: column;
@@ -20,15 +18,32 @@ export const StyledArticleCard = styled.div`
             max-height: 170px;
             object-fit: cover;
             border-radius: 5px;
-            -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
-            filter: grayscale(70%);
+        }
+    }
+
+    .right-arrow,
+    .left-arrow {
+        border: 0px solid #414141;
+        padding: 10px;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: none;
+        cursor: pointer;
+        margin: 2px 5px;
+    }
+
+    .left-arrow {
+        svg {
+            transform: rotate(180deg);
         }
     }
 
     .title-and-btn {
         display: flex;
         flex-direction: column;
-        margin: 35px 0 35px 70px;
+        margin: 35px;
 
         .title {
             font-size: 25px;
@@ -45,5 +60,10 @@ export const StyledArticleCard = styled.div`
             margin-top: 30px;
             cursor: pointer;
         }
+    }
+
+    .article-content {
+        display: flex;
+        padding-left: 10px;
     }
 `;

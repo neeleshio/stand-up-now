@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledLSection = styled.section`
-    width: 70%;
+    /* width: 70%; */
 
     .header-container {
         display: flex;
@@ -12,7 +12,7 @@ export const StyledLSection = styled.section`
             font-size: 40px;
             display: flex;
             flex-direction: column;
-            margin-left: 30px;
+            /* margin-left: 30px; */
         }
     }
 
@@ -44,6 +44,16 @@ export const StyledLSection = styled.section`
             color: #000000;
             border: 1px solid #424242;
         }
+    }
+
+    .bubble-card-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        margin-top: 50px;
+        background: #e7ff55;
+        color: #000000;
+        padding: 50px;
+        border-radius: 50px;
     }
 
     .graph-container {
