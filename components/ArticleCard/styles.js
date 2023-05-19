@@ -78,7 +78,7 @@ export const StyledArticleCard = styled.div`
 
     @media screen and (max-width: 1080px) {
         width: 100%;
-        margin-bottom: 50px;
+        /* margin-bottom: 50px; */
     }
 
     @media screen and (max-width: 690px) {

@@ -11,7 +11,7 @@ function Header() {
     return (
         <StyledHeader>
             <div className="hi-text">
-                <span>Hi, Ann</span>
+                <span>Hi, Spartan</span>
                 <span>Check your Activity 👋</span>
             </div>
             <div className="date-container">

@@ -12,13 +12,16 @@ export const StyledLandingPage = styled.div`
     }
 
     @media screen and (max-width: 1080px) {
+        height: 100%;
+        padding: 15px;
+
         .section-container {
             margin: 0 15px;
         }
     }
 
     @media screen and (max-width: 440px) {
-        padding: 30px 15px;
+        /* padding: 30px 15px; */
     }
 `;
 
