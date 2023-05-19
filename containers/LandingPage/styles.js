@@ -10,6 +10,16 @@ export const StyledLandingPage = styled.div`
         flex-direction: row;
         margin: 0 30px;
     }
+
+    @media screen and (max-width: 1080px) {
+        .section-container {
+            margin: 0 15px;
+        }
+    }
+
+    @media screen and (max-width: 440px) {
+        padding: 30px 15px;
+    }
 `;
 
 export const StyledSubController = styled.div`
@@ -18,5 +28,9 @@ export const StyledSubController = styled.div`
 
     .article-container {
         display: flex;
+    }
+
+    @media screen and (max-width: 1080px) {
+        flex-direction: column;
     }
 `;

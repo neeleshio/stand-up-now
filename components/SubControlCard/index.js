@@ -5,9 +5,9 @@ import Resume from '../Svg/Resume';
 import StringVector from '../Svg/StringVector';
 import { StyledControlCard } from './styles';
 
-function ControlCard({ handlePause, handleReset, pause }) {
+function ControlCard({ handleStart, handleReset, start }) {
     return (
-        <StyledControlCard>
+        <StyledControlCard start={start}>
             <div className="graph-img">
                 <StringVector />
             </div>
@@ -19,16 +19,16 @@ function ControlCard({ handlePause, handleReset, pause }) {
                     </span>
                 </div>
                 <div className="btn-content">
-                    <button onClick={handlePause}>
-                        {pause ? (
-                            <>
-                                <Resume />
-                                <span>Resume</span>
-                            </>
-                        ) : (
+                    <button onClick={handleStart}>
+                        {start ? (
                             <>
                                 <Pause />
                                 <span>Pause</span>
+                            </>
+                        ) : (
+                            <>
+                                <Resume />
+                                <span>Start</span>
                             </>
                         )}
                     </button>

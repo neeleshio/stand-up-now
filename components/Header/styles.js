@@ -41,4 +41,34 @@ export const StyledHeader = styled.div`
             border: 1px solid #424242;
         }
     }
+
+    @media screen and (max-width: 690px) {
+        align-items: center;
+
+        .hi-text {
+            font-size: 34px;
+        }
+
+        .date-container {
+            flex-direction: column;
+            height: 100%;
+
+            .date-wrapper,
+            .greetings {
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 440px) {
+        .hi-text {
+            font-size: 24px;
+        }
+
+        .date-container {
+            .date-wrapper {
+                padding: 0px 15px;
+            }
+        }
+    }
 `;

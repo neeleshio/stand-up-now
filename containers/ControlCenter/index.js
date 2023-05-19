@@ -3,6 +3,7 @@ import { BUBBLE_CARD_CONTENTS } from '@/components/contants';
 import React, { useState, useEffect } from 'react';
 import { StyledControlCenter } from './styles';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
 
 function ControlCenter() {
     const [state, setState] = useState({
@@ -12,6 +13,7 @@ function ControlCenter() {
         3: { value: '15', suffix: 'Min' },
         4: { value: 'bells', suffix: '' }
     });
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const [activeId, setActiveId] = useState(0);
 
@@ -27,10 +29,14 @@ function ControlCenter() {
                 const split = localStorage[i].split(',');
                 stateCopy[i]['value'] = split[0];
                 stateCopy[i]['suffix'] = split[1];
+            } else {
+                localStorage.setItem(i, `${stateCopy[i]['value']},${stateCopy[i]['suffix']}`);
             }
         }
 
         setState(stateCopy);
+
+        console.log('state', state);
     }, []);
 
     const handleSelect = (item, activeId) => {
@@ -39,16 +45,15 @@ function ControlCenter() {
         setState(stateCopy);
         localStorage.setItem(activeId, `${item}, ${stateCopy[activeId]['suffix']}`);
 
-        const a = moment();
-        const c = moment('7:30 am', 'hh:mm a');
-        const d = moment('9:30 pm', 'hh:mm a');
+        handleMainLogic();
+    };
 
-        const duration = moment.duration(d.diff(c));
+    const handleMainLogic = () => {
+        const forEvery = state[2].value;
 
-        console.log(parseInt(duration.asHours()));
-
-        // const b = moment().add(30, 'm').format('hh:mm A');
-        // console.log('b', b);
+        // setInterval(() => {
+        //     console.log('1');
+        // }, 60 * 1000);
     };
 
     const handleOpen = (id) => {
@@ -58,10 +63,11 @@ function ControlCenter() {
 
     const handleToggleSuffix = (id) => {
         const stateCopy = { ...state };
+
         if (stateCopy[id]['suffix'] === 'AM') {
             stateCopy[id]['suffix'] = 'PM';
             localStorage.setItem(activeId, stateCopy[id]['value'] + ',PM');
-        } else {
+        } else if (stateCopy[id]['suffix'] === 'PM') {
             stateCopy[id]['suffix'] = 'AM';
             localStorage.setItem(activeId, stateCopy[id]['value'] + ',AM');
         }

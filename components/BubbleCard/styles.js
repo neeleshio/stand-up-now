@@ -32,6 +32,7 @@ export const StyledBubbleCard = styled.div`
             font-size: 16px;
             margin-left: 5px;
             color: #181818;
+            padding-right: 20px;
         }
     }
 

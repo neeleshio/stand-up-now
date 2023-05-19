@@ -46,7 +46,8 @@ export const StyledArticleCard = styled.div`
         margin: 35px;
 
         .title {
-            font-size: 25px;
+            display: block;
+            font-size: 1.3rem;
             font-weight: 200;
         }
 
@@ -65,5 +66,40 @@ export const StyledArticleCard = styled.div`
     .article-content {
         display: flex;
         padding-left: 10px;
+    }
+
+    @media screen and (max-width: 1300px) {
+        .title-and-btn {
+            .title {
+                font-size: 18px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+
+    @media screen and (max-width: 690px) {
+        height: 100%;
+        padding-top: 30px;
+
+        .article-content {
+            flex-direction: column;
+            padding-left: 0;
+
+            .title-and-btn {
+                margin: 30px 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 410px) {
+        .img-container {
+            img {
+                width: 100%;
+            }
+        }
     }
 `;

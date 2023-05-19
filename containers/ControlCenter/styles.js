@@ -8,4 +8,16 @@ export const StyledControlCenter = styled.div`
     color: #000000;
     padding: 40px;
     border-radius: 30px;
+
+    @media screen and (max-width: 1080px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width: 690px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 520px) {
+        grid-template-columns: 1fr;
+    }
 `;
