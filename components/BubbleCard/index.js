@@ -14,8 +14,8 @@ function BubbleCard({
     dropdown,
     activeId,
     state,
-    handleToggleSuffix,
-    handlePlaySound
+    handlePlaySound,
+    standTimerOn
 }) {
     return (
         <StyledBubbleCard onClick={() => handleOpen(id)}>
@@ -30,11 +30,7 @@ function BubbleCard({
                         <Play />
                     </button>
                 )}
-                <span
-                    className="suffix"
-                    onClick={suffix.length === 2 ? () => handleToggleSuffix(id) : undefined}>
-                    {state[id] && state[id].suffix}
-                </span>
+                <span className="suffix">{state[id] && state[id].suffix}</span>
             </div>
             <div className="name">{name}</div>
         </StyledBubbleCard>

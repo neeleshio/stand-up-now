@@ -3,12 +3,19 @@ import { BUBBLE_CARD_CONTENTS } from '@/components/contants';
 import React, { useState, useEffect } from 'react';
 import { StyledControlCenter } from './styles';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    handleInterval,
+    handleMinute,
+    handleStandMinute,
+    handleStandInterval,
+    hanldeStandTimer
+} from '@/redux/mainReducer';
 
 function ControlCenter() {
     const [state, setState] = useState({
-        0: { value: '9:00', suffix: 'AM' },
-        1: { value: '5:30', suffix: 'PM' },
+        0: { value: '9:00', suffix: '' },
+        1: { value: '17:30', suffix: '' },
         2: { value: '30', suffix: 'Min' },
         3: { value: '15', suffix: 'Min' },
         4: { value: 'bells', suffix: '' }
@@ -16,63 +23,93 @@ function ControlCenter() {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const [activeId, setActiveId] = useState(0);
+    const { start, min, standMin } = useSelector((store) => store.mainReducer);
+    const [timer, setTimer] = useState(0);
+    const [standTimer, setStandTimer] = useState(0);
 
     useEffect(() => {
         setShow(false);
     }, [state]);
 
     useEffect(() => {
+        if (start) {
+            handleMainLogic();
+        }
+    }, [start]);
+
+    useEffect(() => {
+        if (min === 0) {
+            clearInterval(timer);
+            handleStandTimer();
+        }
+    }, [min]);
+
+    useEffect(() => {
+        if (standMin === 0) {
+            clearInterval(standTimer);
+            handleMainLogic();
+        }
+    }, [standMin]);
+
+    useEffect(() => {
         const stateCopy = { ...state };
 
         for (let i = 0; i < 5; i++) {
             if (localStorage[i]) {
-                const split = localStorage[i].split(',');
-                stateCopy[i]['value'] = split[0];
-                stateCopy[i]['suffix'] = split[1];
+                stateCopy[i]['value'] = localStorage[i];
             } else {
-                localStorage.setItem(i, `${stateCopy[i]['value']},${stateCopy[i]['suffix']}`);
+                localStorage.setItem(i, stateCopy[i]['value']);
             }
         }
 
         setState(stateCopy);
-
-        console.log('state', state);
     }, []);
 
     const handleSelect = (item, activeId) => {
         const stateCopy = { ...state };
         stateCopy[activeId]['value'] = item;
         setState(stateCopy);
-        localStorage.setItem(activeId, `${item}, ${stateCopy[activeId]['suffix']}`);
-
-        handleMainLogic();
+        localStorage.setItem(activeId, item);
     };
 
     const handleMainLogic = () => {
-        const forEvery = state[2].value;
+        // const currentTime = moment().add(parseInt(state[2].value), 'm');
+        // const beforeTime = moment(parseInt(state[0].value), 'HH:MM');
+        // const afterTime = moment(parseInt(state[1].value), 'HH:MM');
 
-        // setInterval(() => {
-        //     console.log('1');
-        // }, 60 * 1000);
+        // if (currentTime.isBetween(beforeTime, afterTime)) {
+        //     setTimeout(() => {
+        //         dispatch(handleInterval());
+        //     }, 1000 * 60);
+        // }
+        dispatch(hanldeStandTimer(false));
+        dispatch(handleMinute(state[2].value));
+        setTimer(
+            setInterval(() => {
+                dispatch(handleInterval());
+            }, 1000 * 60)
+        );
+    };
+
+    const handleStandTimer = () => {
+        const sound = state[4].value;
+
+        const audio = new Audio(`/${sound}.mp3`);
+        audio.play();
+
+        dispatch(hanldeStandTimer(true));
+        dispatch(handleStandMinute(state[3].value));
+
+        setStandTimer(
+            setInterval(() => {
+                dispatch(handleStandInterval());
+            }, 1000 * 60)
+        );
     };
 
     const handleOpen = (id) => {
         setActiveId(id);
         setShow(true);
-    };
-
-    const handleToggleSuffix = (id) => {
-        const stateCopy = { ...state };
-
-        if (stateCopy[id]['suffix'] === 'AM') {
-            stateCopy[id]['suffix'] = 'PM';
-            localStorage.setItem(activeId, stateCopy[id]['value'] + ',PM');
-        } else if (stateCopy[id]['suffix'] === 'PM') {
-            stateCopy[id]['suffix'] = 'AM';
-            localStorage.setItem(activeId, stateCopy[id]['value'] + ',AM');
-        }
-
-        setState(stateCopy);
     };
 
     const handlePlaySound = (e, sound) => {
@@ -91,7 +128,6 @@ function ControlCenter() {
                     activeId={activeId}
                     state={state}
                     handleSelect={handleSelect}
-                    handleToggleSuffix={handleToggleSuffix}
                     handlePlaySound={handlePlaySound}
                     {...el}
                     key={el.id}

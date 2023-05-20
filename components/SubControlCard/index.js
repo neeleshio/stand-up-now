@@ -1,11 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Pause from '../Svg/Pause';
 import Reset from '../Svg/Reset';
 import Resume from '../Svg/Resume';
 import StringVector from '../Svg/StringVector';
 import { StyledControlCard } from './styles';
 
-function ControlCard({ handleStart, handleReset, start }) {
+function ControlCard({ handleStart, handleReset, start, min, standTimerOn, standMin }) {
+    const dispatch = useDispatch();
+
     return (
         <StyledControlCard start={start}>
             <div className="graph-img">
@@ -13,17 +16,27 @@ function ControlCard({ handleStart, handleReset, start }) {
             </div>
             <div className="graph-content">
                 <div className="text-content">
-                    <span className="text-1">Next Alert in</span>
-                    <span className="text-3">
-                        30 <span className="text-3-min">min</span>
-                    </span>
+                    {standTimerOn ? (
+                        <span className="text-1">Stand up for</span>
+                    ) : (
+                        <span className="text-1">Next Alert in</span>
+                    )}
+                    {start ? (
+                        <span className="text-3">
+                            {standTimerOn ? standMin : min} <span className="text-3-min">min</span>
+                        </span>
+                    ) : (
+                        <span className="text-3">
+                            <span className="text-3-min">Click start to activate</span>
+                        </span>
+                    )}
                 </div>
                 <div className="btn-content">
-                    <button onClick={handleStart}>
+                    <button onClick={() => dispatch(handleStart())}>
                         {start ? (
                             <>
                                 <Pause />
-                                <span>Pause</span>
+                                <span>Stop</span>
                             </>
                         ) : (
                             <>
@@ -32,10 +45,10 @@ function ControlCard({ handleStart, handleReset, start }) {
                             </>
                         )}
                     </button>
-                    <button onClick={handleReset}>
+                    {/* <button onClick={handleReset}>
                         <Reset />
                         <span>Reset</span>
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </StyledControlCard>

@@ -13,9 +13,9 @@ function Scroll({ handleSelect, activeId, dropdown }) {
             setDropDownList(dropdown);
         } else {
             const arr = [];
-            const hour = 12;
+            const hour = 24;
 
-            for (let i = 1; i <= hour; i++) {
+            for (let i = 0; i < hour; i++) {
                 arr.push(`${i}:00`);
                 arr.push(`${i}:30`);
             }

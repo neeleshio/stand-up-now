@@ -2,16 +2,15 @@ import ArticleCard from '@/components/ArticleCard';
 import { ARTICLES } from '@/components/contants';
 import SubControlCard from '@/components/SubControlCard';
 import RightArrow from '@/components/Svg/RightArrow';
-import { handleInterval } from '@/redux/mainReducer';
+import { handleInterval, handleStart } from '@/redux/mainReducer';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledSubController } from '../LandingPage/styles';
 
 function SubController() {
-    const [start, setStart] = useState(false);
     const [article, setArticle] = useState(0);
     const totalArticles = ARTICLES.length;
-    const dispatch = useDispatch();
+    const { start, min, standTimerOn, standMin } = useSelector((store) => store.mainReducer);
 
     const handleArticleChange = (nav) => {
         if (nav === 'prev') {
@@ -33,16 +32,18 @@ function SubController() {
         window.open(href, '_blank');
     };
 
-    const handleStart = () => {
-        setStart((prev) => !prev);
-        dispatch(handleInterval());
-    };
-
     const handleReset = () => {};
 
     return (
         <StyledSubController>
-            <SubControlCard handleStart={handleStart} handleReset={handleReset} start={start} />
+            <SubControlCard
+                handleStart={handleStart}
+                handleReset={handleReset}
+                start={start}
+                min={min}
+                standTimerOn={standTimerOn}
+                standMin={standMin}
+            />
             <ArticleCard
                 handleArticleChange={handleArticleChange}
                 handleArticleOpen={handleArticleOpen}
