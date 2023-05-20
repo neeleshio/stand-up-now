@@ -6,10 +6,6 @@ import { StyledLandingPage } from './styles';
 import SubController from '../SubController';
 
 function LandingPage() {
-    useEffect(() => {
-        localStorage.clear();
-    }, []);
-
     return (
         <StyledLandingPage>
             <Navbar />
