@@ -3,10 +3,20 @@ import { useDispatch } from 'react-redux';
 import Pause from '../Svg/Pause';
 import Reset from '../Svg/Reset';
 import Resume from '../Svg/Resume';
+import Stop from '../Svg/Stop';
 import StringVector from '../Svg/StringVector';
 import { StyledControlCard } from './styles';
 
-function ControlCard({ handleStart, handleReset, start, min, standTimerOn, standMin }) {
+function ControlCard({
+    handleStart,
+    handleReset,
+    start,
+    min,
+    standTimerOn,
+    standMin,
+    pause,
+    handlePause
+}) {
     const dispatch = useDispatch();
 
     return (
@@ -35,7 +45,7 @@ function ControlCard({ handleStart, handleReset, start, min, standTimerOn, stand
                     <button onClick={() => dispatch(handleStart())}>
                         {start ? (
                             <>
-                                <Pause />
+                                <Stop />
                                 <span>Stop</span>
                             </>
                         ) : (
@@ -45,10 +55,19 @@ function ControlCard({ handleStart, handleReset, start, min, standTimerOn, stand
                             </>
                         )}
                     </button>
-                    {/* <button onClick={handleReset}>
-                        <Reset />
-                        <span>Reset</span>
-                    </button> */}
+                    <button onClick={() => dispatch(handlePause())}>
+                        {pause ? (
+                            <>
+                                <Resume />
+                                <span>Resume</span>
+                            </>
+                        ) : (
+                            <>
+                                <Pause />
+                                <span>Pause</span>
+                            </>
+                        )}
+                    </button>
                 </div>
             </div>
         </StyledControlCard>

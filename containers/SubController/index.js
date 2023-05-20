@@ -2,7 +2,7 @@ import ArticleCard from '@/components/ArticleCard';
 import { ARTICLES } from '@/components/contants';
 import SubControlCard from '@/components/SubControlCard';
 import RightArrow from '@/components/Svg/RightArrow';
-import { handleInterval, handleStart } from '@/redux/mainReducer';
+import { handleInterval, handlePause, handleStart } from '@/redux/mainReducer';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledSubController } from '../LandingPage/styles';
@@ -10,7 +10,7 @@ import { StyledSubController } from '../LandingPage/styles';
 function SubController() {
     const [article, setArticle] = useState(0);
     const totalArticles = ARTICLES.length;
-    const { start, min, standTimerOn, standMin } = useSelector((store) => store.mainReducer);
+    const { start, min, standTimerOn, standMin, pause } = useSelector((store) => store.mainReducer);
 
     const handleArticleChange = (nav) => {
         if (nav === 'prev') {
@@ -43,6 +43,8 @@ function SubController() {
                 min={min}
                 standTimerOn={standTimerOn}
                 standMin={standMin}
+                pause={pause}
+                handlePause={handlePause}
             />
             <ArticleCard
                 handleArticleChange={handleArticleChange}
